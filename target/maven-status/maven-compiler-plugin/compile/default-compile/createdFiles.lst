@@ -1,2 +1,3 @@
 com\walmart\AdminApplication.class
 com\walmart\ServletInitializer.class
+com\walmart\upload\UploadFileControoler.class
