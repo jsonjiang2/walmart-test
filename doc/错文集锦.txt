@@ -1,0 +1,38 @@
+问题：
+Unable to process Jar entry [module-info.class] from Jar [jar:file:/D:/Json_Jiang/apache-tomcat-7.0.75/webapps/walmart-master-one-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-api-2.10.0.jar!/] for annotations
+
+org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 19
+解决办法：
+public class ServletInitializer extends SpringBootServletInitializer{
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+ 		return builder.sources(AdminApplication.class);
+	}
+
+	
+}
+
+
+问题：
+D:\apache-tomcat-8.5.32\bin\tcnative-1.dll: Can't load IA 32-bit .dll on a AMD 64-bit platform
+
+问题解决方法:去tomcat目录下的bin目录里面去找tcnative-1.dll，将其删除就好。
+原因是在64位的系统下安装的虚拟机是64位的，而WTK的 sublime.dll不能在64位的平台下加载64位的虚拟机，只能加载32位的。由于WTK在安装的时候加载的64虚拟机的地址，它找到的是64位的 虚拟机，所以它提示不能加载32位的虚拟机（在目录下没有32的虚拟机）所以，比可以看下你的jdk或者是tomcat的版本是否和系统的版本相同，不相同，换个版本重新安装就好了。
+查看JDK版本：在CMD输入:java -version
+
+
+问题：
+pom.xml出现web.xml is missing and is set to true解决方案
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
